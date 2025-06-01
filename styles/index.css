@@ -1,0 +1,58 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+/* Import JetBrains Mono font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* Define global variables and styles */
+:root {
+  /* Typography */
+  --slidev-font-family-sans: 'Inter', sans-serif;
+  --slidev-font-family-mono: 'JetBrains Mono', monospace;
+
+  /* Accent Colors */
+  --accent-purple: #8A2BE2; /* BlueViolet */
+  --accent-cyan: #00FFFF;   /* Aqua */
+  --accent-orange: #FFA500; /* Orange */
+
+  /* Base text color for dark theme for better readability */
+  --slidev-theme-seriph-text-color: #E0E0E0; /* Light gray for text */
+  --slidev-theme-seriph-headings-color: #FFFFFF; /* White for headings */
+}
+
+/* Apply Inter to the general slide content */
+body, .slidev-layout {
+  font-family: var(--slidev-font-family-sans);
+  color: var(--slidev-theme-seriph-text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--slidev-font-family-sans);
+  font-weight: 700; /* Bold headings */
+  color: var(--slidev-theme-seriph-headings-color);
+}
+
+/* Ensure code blocks use JetBrains Mono */
+pre, code {
+  font-family: var(--slidev-font-family-mono);
+}
+
+/* Style links with accent color */
+a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent-orange);
+  text-decoration: underline;
+}
+
+/* Example of using accent colors for other elements if needed */
+.accent-text-purple {
+  color: var(--accent-purple);
+}
+.accent-text-cyan {
+  color: var(--accent-cyan);
+}
+.accent-text-orange {
+  color: var(--accent-orange);
+}
