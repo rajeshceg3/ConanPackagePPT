@@ -67,6 +67,7 @@ TODO:
 layout: default
 ---
 
+
 # 15. Performance & Optimization
 ## Speeding Up Your Conan Workflows
 
@@ -157,6 +158,7 @@ layout: default
 ---
 layout: default
 ---
+
 
 # 01. What is Conan?
 ## An Introduction to the C++ Package Manager
@@ -914,6 +916,7 @@ layout: default
   </div>
 </div>
 
+
 ---
 layout: default
 ---
@@ -1290,5 +1293,6 @@ layout: default
 [end of slides.md]
 
 [end of slides.md]
+
 
 [end of slides.md]
