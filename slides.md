@@ -20,7 +20,7 @@ progressBar: true
 
 ---
 # Title Slide
-layout: cover # Use a cover layout for a more impactful title slide
+layout: cover
 class: 'text-center' # Center align content
 # Placeholder for animated background - would require a custom layout or component
 # style: |
@@ -40,16 +40,11 @@ TODO:
 
 <div class="my-auto w-full">
   <img src="/conan-logo.svg" alt="Conan Logo" class="h-40 mx-auto mb-8" />
-  <!-- Assuming conan-logo.svg will be placed in public folder.
-       If not available, Slidev might show a broken image icon.
-       A simple text placeholder or emoji could be used alternatively for now. -->
   <!-- Fallback text if image is not found for now: <p class="text-6xl">📦</p> -->
-
   <h1 class="text-6xl font-bold text-white">
     C++ <span class="accent-text-cyan">Conan</span> Package Manager
   </h1>
   <p class="text-3xl mt-2 mb-12 text-gray-200">A Complete Guide</p>
-
   <div class="mt-10">
     <p class="text-xl font-light text-gray-300">
       Presented by: Jules (AI Assistant)
@@ -438,8 +433,7 @@ layout: default
               {"hello", "conan"},
               {"version", "2.0"}
           };
-          std::cout << fmt::format("Formatted JSON: {}
-", json.dump(2));
+          std::cout << fmt::format("Formatted JSON: {}", json.dump(2));
           return 0;
       }
       </code></pre>
@@ -899,7 +893,7 @@ layout: default
     <div class="max-w-4xl mx-auto text-gray-300">
       <ul class="list-disc pl-5 space-y-2">
         <li><code class="text-orange-400">settings</code>: Declares the settings your recipe cares about (OS, compiler, etc.).</li>
-        <li><code class="text-orange-400">requirements()</code>: Define package dependencies. Can use <code class="text-green-400">if/else</code> for conditional logic.</li>
+        <li><code class="text-orange-400">requirements()</code>: Define package dependencies. Can use <code class="textgreen-400">if/else</code> for conditional logic.</li>
         <li><code class="text-orange-400">generate()</code>: Create files needed for consumers to build and use the package (e.g., toolchain files, dependency information files).</li>
         <li><code class="text-orange-400">layout()</code>: Define the folder structure for sources, build artifacts, etc.</li>
         <li><strong class="accent-text-cyan">For Packaging Your Library (more advanced):</strong>
@@ -910,7 +904,7 @@ layout: default
             <li><code class="text-orange-400">package_info()</code>: Declare what consumers need (include dirs, lib names, defines).</li>
           </ul>
         </li>
-        <li><strong class="accent-text-cyan">Hooks and Extensions:</strong> Conan allows custom Python scripts (<code class="text-green-400">hooks</code>) to extend behavior at different lifecycle stages (e.g., pre-export, post-build).</li>
+        <li><strong class="accent-text-cyan">Hooks and Extensions:</strong> Conan allows custom Python scripts (<code class="textgreen-400">hooks</code>) to extend behavior at different lifecycle stages (e.g., pre-export, post-build).</li>
       </ul>
     </div>
   </div>
@@ -1068,7 +1062,7 @@ layout: default
         <li><code class="text-orange-400">exports_sources</code>: Specifies source files/folders to be included from your working directory into the package source folder.</li>
         <li><code class="text-orange-400">layout()</code>: Defines project structure (source, build, package folders).</li>
         <li><code class="text-orange-400">generate()</code>: Prepares information for the build system (e.g., via <code class="textgreen-400">CMakeToolchain</code>, <code class="textgreen-400">CMakeDeps</code>).</li>
-        <li><code class="text-orange-400">source()</code>: Method to fetch source code (e.g., <code class="text-green-400">self.run("git clone ...")</code> or <code class="text-green-400">get()</code> helper for archives). If sources are local (via <code class="text-orange-400">exports_sources</code>), this might be empty.</li>
+        <li><code class="text-orange-400">source()</code>: Method to fetch source code (e.g., <code class="text-green-400">self.run("git clone ...")</code> or <code class="text-green-400">get()</code> helper for archives). If sources are local (via <code class="text.orange-400">exports_sources</code>), this might be empty.</li>
         <li><code class="text-orange-400">build()</code>: Contains logic to compile the library (e.g., invoking CMake, Make, MSBuild).</li>
         <li><code class="text-orange-400">package()</code>: Copies build artifacts (headers, libraries, binaries) from build folders to the final package folder. Uses <code class="text-green-400">copy()</code> helper.</li>
         <li><code class="text-orange-400">package_info()</code>: Declares information for consumers (include dirs, lib dirs, library names, defines, etc.). Crucial for downstream usage.</li>
@@ -1153,7 +1147,7 @@ layout: default
     <h3 class="text-2xl font-semibold accent-text-purple mb-3 text-center">Working with Private Remotes</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
       <div>
-        <h4 class="text-xl accent-text-cyan">Adding a Private Remote</h4>
+        <h4 class="text-xl accent-text-cyan mb-2">Adding a Private Remote</h4>
         <p class="text-gray-300 mb-1">
           Use <code class="text-orange-400">conan remote add</code>:
         </p>
@@ -1166,7 +1160,7 @@ layout: default
         <p class="text-sm text-gray-500 mt-1">List remotes with <code class="text-orange-400">conan remote list</code>.</p>
       </div>
       <div>
-        <h4 class="text-xl accent-text-cyan">Security & Enterprise Patterns</h4>
+        <h4 class="text-xl accent-text-cyan mb-2">Security & Enterprise Patterns</h4>
         <ul class="list-disc pl-5 space-y-1 text-gray-300">
           <li><strong>Permissions:</strong> Control who can read from or write to specific repositories/paths.</li>
           <li><strong>Auditing:</strong> Track package downloads/uploads.</li>
