@@ -1,6 +1,7 @@
 ---
 title: 'C++ Conan Package Manager - Complete Guide'
 theme: 'seriph'
+colorSchema: dark
 aspectRatio: '16/9'
 canvasWidth: 980
 download: true # Enables PDF download option
@@ -287,74 +288,120 @@ layout: default
 # 06. Understanding `conanfile.txt`
 ## Decoding Your Project's Recipe
 
-<div class="mt-4">
-  <p class="text-lg text-center mb-6">The <code class="text-orange-400">conanfile.txt</code> is the simplest way to define your project's needs for Conan. It's declarative and easy to understand.</p>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    <div>
-      <h3 class="text-2xl font-semibold accent-text-purple mb-3">Key Sections Breakdown</h3>
-      <p class="text-gray-300 mb-2">Let's dissect a typical <code class="text-green-400">conanfile.txt</code>:</p>
-      <pre><code class="language-ini line-numbers">
+<p class="text-lg text-center mb-6">The <code class="text-orange-400">conanfile.txt</code> is the simplest way to define your project's needs for Conan. It's declarative and easy to understand.</p>
+<h3 class="text-2xl font-semibold accent-text-purple mb-3">Key Sections Breakdown</h3>
+<p class="text-gray-300 mb-2">Let's dissect a typical <code class="text-green-400">conanfile.txt</code>:</p>
+<pre><code class="language-ini">
       [requires]
       # Defines direct dependencies for your project
       # Format: package/version[@user/channel]
       fmt/10.2.1
       zlib/1.3
-      [generators]
+</code></pre>
+
+---
+layout: default
+---
+# conanfile.txt: generators
+
+<pre><code class="language-ini">      [generators]
       # Specifies build system integration files to generate
       CMakeDeps
       CMakeToolchain
       # Other examples: MSBuildDeps, MakeDeps, PkgConfigDeps
-      [layout]
+</code></pre>
+
+---
+layout: default
+---
+# conanfile.txt: layout
+
+<pre><code class="language-ini">      [layout]
       # Defines the project directory structure
       cmake_layout # Common layout for CMake-based projects
       # basic_layout # Simpler layout
-      [options]
+</code></pre>
+
+---
+layout: default
+---
+# conanfile.txt: options
+
+<pre><code class="language-ini">      [options]
       # Allows setting default options for your dependencies
       # Format: package:option=value
       # Example:
       # zlib*:shared=True # Build zlib as a shared library
       # my_lib:my_option=value
       </code></pre>
-      <!-- TODO: Implement animated reveals for each section -->
-      <p class="text-sm text-gray-500 mt-2">
+
+<!-- TODO: Implement animated reveals for each section -->
+<p class="text-sm text-gray-500 mt-2">
         (These sections could be revealed one by one with explanations using Slidev animations.)
       </p>
-    </div>
-    <div>
-      <h3 class="text-2xl font-semibold accent-text-purple mb-3">Section Deep Dive</h3>
-      <!-- This could be an interactive component or use <v-click> for reveals -->
-      <div class="space-y-3">
-        <div>
-          <h4 class="text-xl font-semibold accent-text-cyan">[requires]</h4>
-          <p class="text-gray-300 text-sm">Lists libraries your project directly depends on. Conan resolves transitive dependencies automatically. Versions can be specific, ranges, or use aliases.</p>
-        </div>
-        <div>
-          <h4 class="text-xl font-semibold accent-text-cyan">[generators]</h4>
-          <p class="text-gray-300 text-sm">Instructs Conan to create files that help your build system locate and use the dependencies (e.g., `find_package` scripts for CMake, `.props` files for MSBuild).</p>
-        </div>
-        <div>
-          <h4 class="text-xl font-semibold accent-text-cyan">[layout]</h4>
-          <p class="text-gray-300 text-sm">Predefined directory structures. <code class="text-orange-400">cmake_layout</code> assumes sources in project root or <code class="text-orange-400">src/</code>, build in <code class="text-orange-400">build/</code>. Simplifies build commands.</p>
-        </div>
-        <div>
-          <h4 class="text-xl font-semibold accent-text-cyan">[options]</h4>
-          <p class="text-gray-300 text-sm">Specify default values for options of your dependencies (e.g., <code class="text-orange-400">zlib:shared=True</code>) or your own project's options if it were a package.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="mt-8">
-    <h3 class="text-2xl font-semibold accent-text-purple mb-3 text-center">Best Practices & Patterns</h3>
-    <ul class="list-disc pl-6 space-y-2 text-gray-300 max-w-3xl mx-auto">
-      <li>Be specific with versions in <code class="text-orange-400">[requires]</code> for reproducible builds, especially for applications. Libraries might use version ranges.</li>
-      <li>Use <code class="text-orange-400">cmake_layout</code> (or equivalent for your build system) if your project follows a standard structure.</li>
-      <li>Keep <code class="text-orange-400">conanfile.txt</code> focused on consumer aspects. For more complex logic (e.g. packaging your own library), use a <code class="text-orange-400">conanfile.py</code>.</li>
-    </ul>
-  </div>
-  <!-- TODO: Placeholder for interactive editor simulation -->
-  <div class="mt-6 border-2 border-dashed border-gray-600 p-4 rounded-lg text-center">
-    <p class="text-gray-400 text-sm">[Placeholder: A mock editor showing a `conanfile.txt`. Users could click/hover on sections like `[requires]` or specific lines to see tooltips or detailed explanations of that part.]</p>
-  </div>
+
+---
+layout: default
+---
+# Understanding conanfile.txt (continued)
+
+
+<div>
+<h3 class="text-2xl font-semibold accent-text-purple mb-3">Section Deep Dive</h3>
+<!-- This could be an interactive component or use <v-click> for reveals -->
+<div class="space-y-3">
+<div>
+<h4 class="text-xl font-semibold accent-text-cyan">[requires]</h4>
+<p class="text-gray-300 text-sm">Lists libraries your project directly depends on. Conan resolves transitive dependencies automatically. Versions can be specific, ranges, or use aliases.</p>
+</div>
+<div>
+<h4 class="text-xl font-semibold accent-text-cyan">[generators]</h4>
+<p class="text-gray-300 text-sm">Instructs Conan to create files that help your build system locate and use the dependencies (e.g., `find_package` scripts for CMake, `.props` files for MSBuild).</p>
+</div>
+</div>
+</div>
+
+---
+layout: default
+---
+# conanfile.txt: Layout and Options
+
+<div><div>
+<div>
+<h4 class="text-xl font-semibold accent-text-cyan">[layout]</h4>
+<p class="text-gray-300 text-sm">Predefined directory structures. <code class="text-orange-400">cmake_layout</code> assumes sources in project root or <code class="text-orange-400">src/</code>, build in <code class="text-orange-400">build/</code>. Simplifies build commands.</p>
+</div>
+<div>
+<h4 class="text-xl font-semibold accent-text-cyan">[options]</h4>
+<p class="text-gray-300 text-sm">Specify default values for options of your dependencies (e.g., <code class="text-orange-400">zlib:shared=True</code>) or your own project's options if it were a package.</p>
+</div>
+</div>
+</div>
+
+---
+layout: default
+---
+# Understanding conanfile.txt (continued)
+
+
+<div class="mt-8">
+<h3 class="text-2xl font-semibold accent-text-purple mb-3 text-center">Best Practices &amp; Patterns</h3>
+<ul class="list-disc pl-6 space-y-2 text-gray-300 max-w-3xl mx-auto">
+<li>Be specific with versions in <code class="text-orange-400">[requires]</code> for reproducible builds, especially for applications. Libraries might use version ranges.</li>
+<li>Use <code class="text-orange-400">cmake_layout</code> (or equivalent for your build system) if your project follows a standard structure.</li>
+<li>Keep <code class="text-orange-400">conanfile.txt</code> focused on consumer aspects. For more complex logic (e.g. packaging your own library), use a <code class="text-orange-400">conanfile.py</code>.</li>
+</ul>
+</div>
+
+---
+layout: default
+---
+# Understanding conanfile.txt (continued)
+
+
+<!-- TODO: Placeholder for interactive editor simulation -->
+<div class="mt-6 border-2 border-dashed border-gray-600 p-4 rounded-lg text-center">
+<p class="text-gray-400 text-sm">[Placeholder: A mock editor showing a `conanfile.txt`. Users could click/hover on sections like `[requires]` or specific lines to see tooltips or detailed explanations of that part.]</p>
 </div>
 ---
 layout: default
@@ -362,53 +409,80 @@ layout: default
 # 07. Package Discovery
 ## Finding and Inspecting Conan Packages
 
-<div class="mt-4">
-  <p class="text-lg text-center mb-6">Conan provides powerful tools to find and learn about available packages, primarily through <span class="accent-text-cyan">Conan Center</span> and command-line queries.</p>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    <div>
-      <h3 class="text-2xl font-semibold accent-text-purple mb-3">Exploring Conan Center</h3>
-      <p class="text-gray-300 mb-2">
-        <a href="https://conan.io/center/" target="_blank" class="text-cyan-400 hover:text-orange-400">Conan Center</a> is the official public repository for Conan packages. You can:
+<p class="text-lg text-center mb-6">Conan provides powerful tools to find and learn about available packages, primarily through <span class="accent-text-cyan">Conan Center</span> and command-line queries.</p>
+<div>
+<h3 class="text-2xl font-semibold accent-text-purple mb-3">Exploring Conan Center</h3>
+<p class="text-gray-300 mb-2">
+<a class="text-cyan-400 hover:text-orange-400" href="https://conan.io/center/" target="_blank">Conan Center</a> is the official public repository for Conan packages. You can:
       </p>
-      <ul class="list-disc pl-5 space-y-1 text-gray-300">
-        <li>Search for packages by name (e.g., "fmt", "boost", "openssl").</li>
-        <li>View available versions, licenses, and documentation links.</li>
-        <li>See common settings, options, and dependencies for each package.</li>
-        <li>Find usage instructions (how to add to your `conanfile.txt` or `conanfile.py`).</li>
-      </ul>
-      <!-- TODO: Include a screenshot or mock-up of Conan Center search results -->
-      <div class="border-2 border-dashed border-gray-600 p-4 rounded-lg text-center mt-3 h-24 flex items-center justify-center">
-        <p class="text-gray-400 text-sm">[Placeholder: Screenshot of Conan Center website showing a search for "fmt" and its result page.]</p>
-      </div>
-    </div>
-    <div>
-      <h3 class="text-2xl font-semibold accent-text-purple mb-3">Command-Line Search</h3>
-      <p class="text-gray-300 mb-2">Use <code class="text-orange-400">conan search</code> to find packages in remotes:</p>
-      <p class="text-gray-400 mt-1">Search for all packages (can be very long!):</p>
-      <pre><code class="language-bash">
+<ul class="list-disc pl-5 space-y-1 text-gray-300">
+<li>Search for packages by name (e.g., "fmt", "boost", "openssl").</li>
+<li>View available versions, licenses, and documentation links.</li>
+<li>See common settings, options, and dependencies for each package.</li>
+<li>Find usage instructions (how to add to your `conanfile.txt` or `conanfile.py`).</li>
+</ul>
+<!-- TODO: Include a screenshot or mock-up of Conan Center search results -->
+<div class="border-2 border-dashed border-gray-600 p-4 rounded-lg text-center mt-3 h-24 flex items-center justify-center">
+<p class="text-gray-400 text-sm">[Placeholder: Screenshot of Conan Center website showing a search for "fmt" and its result page.]</p>
+</div>
+</div>
+
+---
+layout: default
+---
+# Package Discovery (continued)
+
+
+<div>
+<h3 class="text-2xl font-semibold accent-text-purple mb-3">Command-Line Search</h3>
+<p class="text-gray-300 mb-2">Use <code class="text-orange-400">conan search</code> to find packages in remotes:</p>
+<p class="text-gray-400 mt-1">Search for all packages (can be very long!):</p>
+<pre><code class="language-bash">
       # Might list many packages, often better to be specific
       conan search "*" --remote=conancenter
       </code></pre>
-      <p class="text-sm text-gray-500 mt-1 mb-2">Output: (Lists package names like <code class="text-green-400">fmt/10.2.1</code>, <code class="text-green-400">zlib/1.3</code>, etc.)</p>
-      <p class="text-gray-400 mt-3">Search for packages matching a pattern (e.g., "boost"):</p>
-      <pre><code class="language-bash">
+<p class="text-sm text-gray-500 mt-1 mb-2">Output: (Lists package names like <code class="text-green-400">fmt/10.2.1</code>, <code class="text-green-400">zlib/1.3</code>, etc.)</p>
+</div>
+
+---
+layout: default
+---
+# Package Discovery: Pattern Search
+
+<div>
+<p class="text-gray-400 mt-3">Search for packages matching a pattern (e.g., "boost"):</p>
+<pre><code class="language-bash">
       conan search "boost*" --remote=conancenter
       </code></pre>
-      <p class="text-sm text-gray-500 mt-1 mb-2">Output: (Lists various Boost packages like <code class="text-green-400">boost/1.84.0</code>, <code class="text-green-400">bzip2/1.0.8</code> (as a Boost dep), etc.)</p>
-    </div>
-  </div>
-  <div class="mt-8">
-    <h3 class="text-2xl font-semibold accent-text-purple mb-3">Inspecting Package Details</h3>
-    <p class="text-gray-300 mb-2">
+<p class="text-sm text-gray-500 mt-1 mb-2">Output: (Lists various Boost packages like <code class="text-green-400">boost/1.84.0</code>, <code class="text-green-400">bzip2/1.0.8</code> (as a Boost dep), etc.)</p>
+</div>
+
+---
+layout: default
+---
+# Package Discovery (continued)
+
+
+<div class="mt-8">
+<h3 class="text-2xl font-semibold accent-text-purple mb-3">Inspecting Package Details</h3>
+<p class="text-gray-300 mb-2">
       Use <code class="text-orange-400">conan inspect</code> to get detailed information about a specific package recipe from your local cache or a remote.
     </p>
-    <pre><code class="language-bash">
+<pre><code class="language-bash">
     # Inspect the recipe for fmt/10.2.1 (ensure version exists)
     # The trailing '@' indicates no user/channel, common for Conan Center packages
     conan inspect fmt/10.2.1@
     </code></pre>
-    <!-- TODO: Mockup or use an actual (abbreviated) output -->
-    <pre><code class="language-text">
+<!-- TODO: Mockup or use an actual (abbreviated) output -->
+</div>
+
+---
+layout: default
+---
+# Package Inspection: Example Output
+
+<div>
+<pre><code class="language-text">
     # Example output snippet (can be quite verbose):
     name: fmt
     version: 10.2.1
@@ -421,16 +495,22 @@ layout: default
       fPIC: [True, False] (default: True)
     ... (and much more)
     </code></pre>
-  </div>
-  <div class="mt-6">
-    <h3 class="text-2xl font-semibold accent-text-purple mb-3 text-center">Version Management Strategies</h3>
-    <ul class="list-disc pl-6 space-y-2 text-gray-300 max-w-3xl mx-auto">
-      <li><strong class="accent-text-cyan">Explicit Versions:</strong> <code class="text-orange-400">fmt/10.2.1</code> - Best for reproducibility in applications.</li>
-      <li><strong class="accent-text-cyan">Version Ranges (Libraries):</strong> <code class="text-orange-400">fmt/[>=10.0 <11.0]</code> - Allows compatible updates, more common for library developers. Use with caution in applications.</li>
-      <li><strong class="accent-text-cyan">Aliases:</strong> <code class="text-orange-400">fmt/stable</code> -> <code class="text-orange-400">fmt/10.2.1</code> - Can simplify updates but adds an indirection layer.</li>
-      <li><strong class="accent-text-cyan">Lockfiles:</strong> The most robust way to ensure reproducible dependencies (covered later!).</li>
-    </ul>
-  </div>
+</div>
+
+---
+layout: default
+---
+# Package Discovery (continued)
+
+
+<div class="mt-6">
+<h3 class="text-2xl font-semibold accent-text-purple mb-3 text-center">Version Management Strategies</h3>
+<ul class="list-disc pl-6 space-y-2 text-gray-300 max-w-3xl mx-auto">
+<li><strong class="accent-text-cyan">Explicit Versions:</strong> <code class="text-orange-400">fmt/10.2.1</code> - Best for reproducibility in applications.</li>
+<li><strong class="accent-text-cyan">Version Ranges (Libraries):</strong> <code class="text-orange-400">fmt/[&gt;=10.0 &lt;11.0]</code> - Allows compatible updates, more common for library developers. Use with caution in applications.</li>
+<li><strong class="accent-text-cyan">Aliases:</strong> <code class="text-orange-400">fmt/stable</code> -&gt; <code class="text-orange-400">fmt/10.2.1</code> - Can simplify updates but adds an indirection layer.</li>
+<li><strong class="accent-text-cyan">Lockfiles:</strong> The most robust way to ensure reproducible dependencies (covered later!).</li>
+</ul>
 </div>
 ---
 layout: default

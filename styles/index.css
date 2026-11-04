@@ -1,3 +1,5 @@
+@import "@fontsource/noto-emoji/400.css";
+
 /* Import Inter font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 /* Import JetBrains Mono font */
@@ -56,3 +58,10 @@ a:hover {
 .accent-text-orange {
   color: var(--accent-orange);
 }
+
+/* Raw HTML code examples stay within their column without hiding text. */
+.slidev-layout pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.slidev-layout pre code { white-space: inherit; }
+
+/* Bundle emoji glyphs so slides do not depend on the viewer OS fonts. */
+.slidev-layout { font-family: "Roboto", "Noto Emoji", ui-sans-serif, system-ui, sans-serif; }

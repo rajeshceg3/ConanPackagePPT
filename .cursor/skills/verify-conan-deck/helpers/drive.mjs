@@ -19,6 +19,11 @@ try{
   let pkg; try{pkg=JSON.parse(pkgRaw);}catch(e){fail('package','package.json is not valid JSON: '+e.message);}
   if(!pkg.scripts||!pkg.scripts.build)fail('package','package.json has no build script');
   ok('package',{name:pkg.name,scripts:Object.keys(pkg.scripts)});
+  // Emoji glyphs must ship with the deck, not rely on the viewer OS.
+  if(pkg.dependencies?.['@fontsource/noto-emoji']!=='5.3.2')fail('emoji','bundled Noto Emoji 5.3.2 dependency missing');
+  const emojiCss=fs.readFileSync(path.join(deck,"styles/index.css"),'utf8');
+  if(!emojiCss.includes('@fontsource/noto-emoji/400.css')||!emojiCss.includes('"Noto Emoji"'))fail('emoji','bundled emoji import or font fallback missing');
+  ok('emoji','Noto Emoji bundled and included in slide font fallback');
   // 2. slides.md present, hashed
   if(!fs.existsSync(slidesPath))fail('slides','slides.md missing at '+deckDir+'/slides.md');
   const md=fs.readFileSync(slidesPath,'utf8');
