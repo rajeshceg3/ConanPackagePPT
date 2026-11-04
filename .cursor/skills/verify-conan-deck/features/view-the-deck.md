@@ -14,6 +14,6 @@ The static helper proves the sources the dev server will consume (config placeme
 
 ## Gotchas
 
-- npm installs several hundred MB; this repo has no Playwright dependency, so plain `npm install` is enough for dev/build; export needs `npx playwright install chromium`.
+- npm installs several hundred MB; `playwright-chromium` is a devDependency for PDF export - use `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install` only when skipping export.
 - Port 3030 must be free. Stop the server with Ctrl-C when done.
 - The title slide carries `layout: cover` in frontmatter position; a prior revision had it after the heading, which printed config text on the slide.

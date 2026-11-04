@@ -11,7 +11,7 @@ Conan Package Manager deck is a [Slidev](https://sli.dev/) slide deck whose proj
 Two levels, pick by need:
 
 - **Static drive (no install, default):** from the repository root run `node .cursor/skills/verify-conan-deck/helpers/drive.mjs`. It needs only Node 18+ and the checkout itself - no `npm install`, no network, no ports. It is ready when it prints the proof JSON.
-- **Full app (extended proof):** `cd . && npm install && npm run dev`, ready when Vite prints `Local: http://localhost:3030/`. `npm run build` compiles the real deck to `./dist/`. PDF export additionally needs Playwright Chromium; set `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` during `npm install` when you only need dev/build.
+- **Full app (extended proof):** `cd . && npm install && npm run dev`, ready when Vite prints `Local: http://localhost:3030/`. `npm run build` compiles the real deck to `./dist/`. The frontmatter sets `download: true`, so `npm run build` also runs a PDF export that needs the `playwright-chromium` devDependency and its browser; set `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` during `npm install` only when you are skipping the PDF export.
 
 ## Doctor
 
