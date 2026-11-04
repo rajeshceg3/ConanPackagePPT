@@ -14,6 +14,6 @@ Run the helper first for the fast structural pass, then run the real build above
 
 ## Gotchas
 
-- PDF export needs a Playwright Chromium download;this repo has no Playwright dependency, so plain `npm install` is enough for dev/build; export needs `npx playwright install chromium`.
+- PDF export runs as part of `npm run build` (`download: true` frontmatter) and needs the `playwright-chromium` devDependency plus its Chromium browser (`npx playwright install chromium` on a fresh machine).
 - `dist/` and `node_modules/` are gitignored build output, not sources.
 - The title slide carries `layout: cover` in frontmatter position; a prior revision had it after the heading, which printed config text on the slide.
