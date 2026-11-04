@@ -17,7 +17,7 @@ try {
  const proof={screenshots:[],navigation:null,visualReview:'requires full-size human inspection; screenshots alone are not a visual pass'};
  for(const slide of [1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]){
   await page.goto(new URL(String(slide),base.endsWith('/')?base:base+'/').href,{waitUntil:'networkidle'});
-  await page.keyboard.press('Escape');await page.evaluate(async()=>{await document.fonts.load('400 32px "Noto Emoji"','🚀⚡');await document.fonts.ready;});await page.waitForTimeout(600);
+  await page.keyboard.press('Escape');await page.evaluate(async()=>{await document.fonts.load('400 32px "Deck Emoji"','🚀⚡');await document.fonts.ready;});await page.waitForTimeout(600);
   assert(await page.locator('.slidev-layout').count()>0,'slide layout missing');
   await page.screenshot({path:path.join(out,`slide-${slide}.png`)});proof.screenshots.push(slide);
  }
