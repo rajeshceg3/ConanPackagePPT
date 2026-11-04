@@ -17,15 +17,8 @@ drawings:
 slideNo: true
 progressBar: true
 ---
-
-# Title Slide
 layout: cover
-class: 'text-center' # Center align content
-# Placeholder for animated background - would require a custom layout or component
-# style: |
-#  background-image: url('/animated-cpp-background.svg');
-#  background-size: cover;
-#  background-repeat: no-repeat;
+class: text-center
 ---
 
 <!--
@@ -57,6 +50,7 @@ TODO:
 </div>
 ---
 layout: default
+---
 # 01. What is Conan?
 ## An Introduction to the C++ Package Manager
 
@@ -69,7 +63,6 @@ layout: default
     <p class="mt-2 text-lg">
       Its primary purpose is to automate the management of libraries and dependencies, simplifying the process of building and sharing C++ projects.
     </p>
-
     <h3 class="text-2xl font-semibold accent-text-purple mt-8 mb-3">Problem Solved</h3>
     <ul class="list-disc pl-6 text-lg space-y-2">
       <li>Alleviates <strong class="accent-text-cyan">"Dependency Hell"</strong> in C++ projects.</li>
@@ -87,7 +80,6 @@ layout: default
       </p>
       <p class="mt-4 text-2xl">🤯 vs 😎</p>
     </div>
-
     <h3 class="text-2xl font-semibold accent-text-purple mt-8 mb-3">Key Statistics & Adoption</h3>
     <!-- TODO: Research and add actual statistics -->
     <ul class="list-disc pl-6 text-lg space-y-2">
@@ -101,6 +93,7 @@ layout: default
 </div>
 ---
 layout: default
+---
 # 02. Why Package Management Matters
 ## Taming Complexity in C++ Development
 
@@ -168,6 +161,7 @@ layout: default
 </div>
 ---
 layout: default
+---
 # 03. Conan Architecture Overview
 ## Understanding How Conan Works
 
@@ -229,12 +223,12 @@ layout: default
 </div>
 ---
 layout: default
+---
 # 05. Your First Conan Project
 ## Hands-On: Bringing Dependencies to Life
 
 <div class="mt-6">
   <p class="text-xl text-center mb-6">Let's build a simple C++ application that uses external libraries (<code class="text-orange-400">fmt</code> for formatting, <code class="text-orange-400">nlohmann/json</code> for JSON manipulation) managed by Conan.</p>
-
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     <div>
       <h3 class="text-2xl font-semibold accent-text-purple mb-2">Project Structure</h3>
@@ -246,15 +240,13 @@ layout: default
       └── build/         # Will be created during build
       </code></pre>
       <p class="text-sm text-gray-400 mt-1">A minimal project: a Conan recipe, your source code, and a build folder.</p>
-
       <h3 class="text-2xl font-semibold accent-text-purple mt-6 mb-2">1. The Source Code: <code class="text-green-400">main.cpp</code></h3>
       <p class="text-gray-300 mb-2">Our application will format and print a JSON object.</p>
       <pre><code class="language-cpp line-numbers">
       // main.cpp
-      #include <iostream>
-      #include <fmt/format.h>      // From Conan
-      #include <nlohmann/json.hpp> // From Conan
-
+      #include &lt;iostream>
+      #include &lt;fmt/format.h>      // From Conan
+      #include &lt;nlohmann/json.hpp> // From Conan
       int main() {
           auto json = nlohmann::json{
               {"hello", "conan"},
@@ -265,21 +257,17 @@ layout: default
       }
       </code></pre>
     </div>
-
     <div>
       <h3 class="text-2xl font-semibold accent-text-purple mb-2">2. The Recipe: <code class="text-green-400">conanfile.txt</code></h3>
       <p class="text-gray-300 mb-2">This file tells Conan about our project's dependencies and how to prepare the build environment.</p>
       <pre><code class="language-ini line-numbers">
       # conanfile.txt
-
       [requires]
       fmt/10.2.1         # Using a recent version of fmt
       nlohmann_json/3.11.3 # Using a recent version of nlohmann_json
-
       [generators]
       CMakeDeps          # Generates info for find_package() in CMake
       CMakeToolchain     # Generates CMake toolchain file
-
       [layout]
       cmake_layout       # Defines standard project layout (source, build folders)
       </code></pre>
@@ -290,42 +278,37 @@ layout: default
       </p>
     </div>
   </div>
-
   <p class="text-center text-lg mt-8 text-gray-400">
     Next, we'll look at how to build this project using CMake and these Conan files.
   </p>
 </div>
 ---
 layout: default
+---
 # 06. Understanding `conanfile.txt`
 ## Decoding Your Project's Recipe
 
 <div class="mt-4">
   <p class="text-lg text-center mb-6">The <code class="text-orange-400">conanfile.txt</code> is the simplest way to define your project's needs for Conan. It's declarative and easy to understand.</p>
-
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     <div>
       <h3 class="text-2xl font-semibold accent-text-purple mb-3">Key Sections Breakdown</h3>
       <p class="text-gray-300 mb-2">Let's dissect a typical <code class="text-green-400">conanfile.txt</code>:</p>
-
       <pre><code class="language-ini line-numbers">
       [requires]
       # Defines direct dependencies for your project
       # Format: package/version[@user/channel]
       fmt/10.2.1
       zlib/1.3
-
       [generators]
       # Specifies build system integration files to generate
       CMakeDeps
       CMakeToolchain
       # Other examples: MSBuildDeps, MakeDeps, PkgConfigDeps
-
       [layout]
       # Defines the project directory structure
       cmake_layout # Common layout for CMake-based projects
       # basic_layout # Simpler layout
-
       [options]
       # Allows setting default options for your dependencies
       # Format: package:option=value
@@ -338,7 +321,6 @@ layout: default
         (These sections could be revealed one by one with explanations using Slidev animations.)
       </p>
     </div>
-
     <div>
       <h3 class="text-2xl font-semibold accent-text-purple mb-3">Section Deep Dive</h3>
       <!-- This could be an interactive component or use <v-click> for reveals -->
@@ -362,7 +344,6 @@ layout: default
       </div>
     </div>
   </div>
-
   <div class="mt-8">
     <h3 class="text-2xl font-semibold accent-text-purple mb-3 text-center">Best Practices & Patterns</h3>
     <ul class="list-disc pl-6 space-y-2 text-gray-300 max-w-3xl mx-auto">
@@ -371,7 +352,6 @@ layout: default
       <li>Keep <code class="text-orange-400">conanfile.txt</code> focused on consumer aspects. For more complex logic (e.g. packaging your own library), use a <code class="text-orange-400">conanfile.py</code>.</li>
     </ul>
   </div>
-
   <!-- TODO: Placeholder for interactive editor simulation -->
   <div class="mt-6 border-2 border-dashed border-gray-600 p-4 rounded-lg text-center">
     <p class="text-gray-400 text-sm">[Placeholder: A mock editor showing a `conanfile.txt`. Users could click/hover on sections like `[requires]` or specific lines to see tooltips or detailed explanations of that part.]</p>
@@ -379,12 +359,12 @@ layout: default
 </div>
 ---
 layout: default
+---
 # 07. Package Discovery
 ## Finding and Inspecting Conan Packages
 
 <div class="mt-4">
   <p class="text-lg text-center mb-6">Conan provides powerful tools to find and learn about available packages, primarily through <span class="accent-text-cyan">Conan Center</span> and command-line queries.</p>
-
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     <div>
       <h3 class="text-2xl font-semibold accent-text-purple mb-3">Exploring Conan Center</h3>
@@ -402,18 +382,15 @@ layout: default
         <p class="text-gray-400 text-sm">[Placeholder: Screenshot of Conan Center website showing a search for "fmt" and its result page.]</p>
       </div>
     </div>
-
     <div>
       <h3 class="text-2xl font-semibold accent-text-purple mb-3">Command-Line Search</h3>
       <p class="text-gray-300 mb-2">Use <code class="text-orange-400">conan search</code> to find packages in remotes:</p>
-
       <p class="text-gray-400 mt-1">Search for all packages (can be very long!):</p>
       <pre><code class="language-bash">
       # Might list many packages, often better to be specific
       conan search "*" --remote=conancenter
       </code></pre>
       <p class="text-sm text-gray-500 mt-1 mb-2">Output: (Lists package names like <code class="text-green-400">fmt/10.2.1</code>, <code class="text-green-400">zlib/1.3</code>, etc.)</p>
-
       <p class="text-gray-400 mt-3">Search for packages matching a pattern (e.g., "boost"):</p>
       <pre><code class="language-bash">
       conan search "boost*" --remote=conancenter
@@ -421,7 +398,6 @@ layout: default
       <p class="text-sm text-gray-500 mt-1 mb-2">Output: (Lists various Boost packages like <code class="text-green-400">boost/1.84.0</code>, <code class="text-green-400">bzip2/1.0.8</code> (as a Boost dep), etc.)</p>
     </div>
   </div>
-
   <div class="mt-8">
     <h3 class="text-2xl font-semibold accent-text-purple mb-3">Inspecting Package Details</h3>
     <p class="text-gray-300 mb-2">
@@ -447,7 +423,6 @@ layout: default
     ... (and much more)
     </code></pre>
   </div>
-
   <div class="mt-6">
     <h3 class="text-2xl font-semibold accent-text-purple mb-3 text-center">Version Management Strategies</h3>
     <ul class="list-disc pl-6 space-y-2 text-gray-300 max-w-3xl mx-auto">
@@ -460,6 +435,7 @@ layout: default
 </div>
 ---
 layout: default
+---
 # 14. Multi-Platform Development
 ## Building for Diverse Targets with Conan
 
@@ -467,7 +443,6 @@ layout: default
   <p class="text-lg text-center mb-6">
     Conan's robust support for profiles and its build system integrations make it well-suited for multi-platform C++ development, including cross-compilation and CI/CD automation.
   </p>
-
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     <div>
       <h3 class="text-2xl font-semibold accent-text-purple mb-3">Cross-Compilation with Profiles</h3>
@@ -491,7 +466,6 @@ layout: default
         Conan manages toolchains and dependencies for both build and host contexts.
       </p>
     </div>
-
     <div>
       <h3 class="text-2xl font-semibold accent-text-purple mb-3">Docker for Consistent Environments</h3>
       <p class="text-gray-300 mb-2">
@@ -507,10 +481,8 @@ layout: default
       FROM ubuntu:22.04
       RUN apt-get update && apt-get install -y python3 python3-pip cmake g++
       RUN pip3 install conan
-
       # Set up Conan default profile (or copy custom ones)
       RUN conan profile detect --force
-
       WORKDIR /app
       # Copy your project and run conan install/create
       </code></pre>
@@ -519,7 +491,6 @@ layout: default
       </p>
     </div>
   </div>
-
   <div class="mt-8">
     <h3 class="text-2xl font-semibold accent-text-purple mb-3 text-center">CI/CD Integration & Platform Specifics</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -544,14 +515,12 @@ layout: default
         <pre><code class="language-python">
         # Example in conanfile.py
         from conan.tools.apple import is_apple_os
-
         # ...
         def requirements(self):
             if self.settings.os == "Windows":
                 self.requires("win_specific_lib/1.0")
             if is_apple_os(self): # macOS, iOS, tvOS, watchOS
                 self.requires("apple_framework_wrapper/1.0")
-
         def package_info(self):
             if self.settings.os == "Linux":
                 self.cpp_info.system_libs.append("pthread")
