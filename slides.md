@@ -16,7 +16,6 @@ drawings:
 # Enable slide numbers and progress bar
 slideNo: true
 progressBar: true
----
 layout: cover
 class: text-center
 ---
